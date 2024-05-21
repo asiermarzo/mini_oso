@@ -8,7 +8,7 @@ import oso.common.Tablero;
 
 public class Partida extends Thread{
     Tablero tablero;
-    boolean turnoA;
+    boolean esTurnoA;
     Jugador jugadorA;
     Jugador jugadorB;
 
@@ -24,43 +24,33 @@ public class Partida extends Thread{
             jugadorA.open();
             jugadorB.open();     
             
-            jugadorA.mandar( tablero );
-            jugadorB.mandar( tablero );
+            jugadorA.mandarTablero( tablero );
+            jugadorB.mandarTablero( tablero );
             
-            turnoA = Math.random() > 0.5; //turno al azar para A o B
+            esTurnoA = Math.random() > 0.5; //turno al azar para A o B
             while( tablero.estaLleno() == false ){
                 jugadorA.resetObjectOutput();
                 jugadorB.resetObjectOutput();
                 
-                Jugador jugador = turnoA ? jugadorA : jugadorB;
-                Jugador otroJugador = turnoA ? jugadorB : jugadorA;
+                Jugador jugador = esTurnoA ? jugadorA : jugadorB;
                 
                 jugador.mandarTuTurno();
                 Jugada jugada = jugador.leerJugada();
                 
-                if (tablero.puedo(jugada) == false){ //si la jugada es invalida, el jugador pierde la partida
-                    jugador.puntos = -100;
-                    break;
+                if ( tablero.puedo(jugada) ){ 
+                    int osos = tablero.aplicar( jugada );
+                    jugador.puntos += osos;
                 }
-                
-                int osos = tablero.aplicar( jugada );
-                jugador.puntos += osos;
                 
                 jugadorA.mandarPuntos(jugadorA.puntos, jugadorB.puntos);
                 jugadorB.mandarPuntos(jugadorB.puntos, jugadorA.puntos);
                 
-                turnoA = ! turnoA;
+                esTurnoA = ! esTurnoA;
                 
-                jugadorA.mandar( tablero );
-                jugadorB.mandar( tablero );
+                jugadorA.mandarTablero( tablero );
+                jugadorB.mandarTablero( tablero );
             }
-            
-            if (jugadorA.puntos > jugadorB.puntos){
-                
-            }else{
-                
-            }
-            
+                        
         } catch (Exception ex) {
             Logger.getLogger(Partida.class.getName()).log(Level.SEVERE, null, ex);
         }finally{

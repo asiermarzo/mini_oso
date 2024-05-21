@@ -38,7 +38,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
     
 
       
-     @Override
+    @Override
     public void actionPerformed(ActionEvent e) {
         if (activado == false)
             return;
@@ -51,7 +51,6 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         char letra = oRadio.isSelected() ? 'o' : 's';
         int x = Integer.parseInt( s[0] );
         int y = Integer.parseInt( s[1] );
-        JButton button = (JButton) e.getSource();
         
         jugador.mandarJugada(x,y,letra);
         activar(false);
@@ -197,8 +196,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
 
-  
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

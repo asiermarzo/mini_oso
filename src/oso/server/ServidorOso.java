@@ -17,11 +17,10 @@ public class ServidorOso extends Thread{
     public void run() {
         try( ServerSocket serverSocket = new ServerSocket(port); ){
         System.out.println("Started server on port " + port);
-            //cada 2 clientes los metemos a una partida
             while( ! interrupted() ){
                 Socket socketA = null;
                 Socket socketB = null;
-                try{
+                try{ //cada 2 clientes los metemos a una partida
                     socketA = serverSocket.accept();
                     socketB = serverSocket.accept();
                     

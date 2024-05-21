@@ -32,7 +32,7 @@ public class Jugador {
         try{ socket.close(); } catch(Exception ex){}
     }
 
-    public void mandar(Tablero tablero) throws IOException {
+    public void mandarTablero(Tablero tablero) throws IOException {
         objectOutput.writeObject( tablero );
     }
 

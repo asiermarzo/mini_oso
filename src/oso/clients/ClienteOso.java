@@ -4,7 +4,6 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oso.common.Tablero;
-import oso.server.FinPartida;
 import oso.server.Jugador;
 import oso.server.Puntos;
 import oso.server.TuTurno;
@@ -38,14 +37,11 @@ public class ClienteOso extends Thread{
             gui.actualizar(tablero);
             gui.activar(false);
             
-            while(interrupted() == false){
+            while(interrupted() == false){ //recepcion de mensajes
                 Object msg = jugador.leerObjeto();
                 if (msg instanceof TuTurno){
                     TuTurno turno = (TuTurno)msg;
                     gui.activar( true );
-                }else if (msg instanceof FinPartida){
-                    FinPartida fin = (FinPartida)msg;
-                    gui.terminar();
                 }else if (msg instanceof Puntos){
                     Puntos puntos = (Puntos)msg;
                     gui.actualizarPuntos(puntos.getTusPuntos(), puntos.getOtrosPuntos());
@@ -61,9 +57,15 @@ public class ClienteOso extends Thread{
         }finally{
             try{ jugador.close(); }catch(Exception ex){}
         }
+        
         gui.terminar();
     }
+
+    public OsoGUI getGui() {
+        return gui;
+    }
    
+    
     
     public static void main(String[] args) {
         ClienteOso juegoRed = new ClienteOso("localhost", 12000);

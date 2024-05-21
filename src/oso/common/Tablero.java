@@ -39,8 +39,6 @@ public class Tablero implements Serializable{
         for (int x = 0; x < xDim; ++x) 
             for (int y = 0; y < yDim; ++y) 
                 casillas[x][y] = CHAR_VACIO;
-            
-        
     }
 
     public boolean estaLleno() {
@@ -48,7 +46,6 @@ public class Tablero implements Serializable{
             for (int y = 0; y < yDim; ++y) 
                 if (casillas[x][y] == CHAR_VACIO) 
                     return false;
-
         return true;
     }
 
