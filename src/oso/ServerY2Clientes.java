@@ -10,7 +10,7 @@ public class ServerY2Clientes {
         servidor.start();
         
         for(int i = 0; i < 2; i++){
-            ClienteOso cliente = new ClienteOso("localhost", 12000);
+            ClienteOso cliente = new ClienteOso("localhost", 12000, i+1);
             cliente.start();
         }
     }

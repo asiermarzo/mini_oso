@@ -10,6 +10,7 @@ import oso.server.TuTurno;
 
 
 public class ClienteOso extends Thread{
+    private final int nClient;
     private final String host;
     private final int port;
     
@@ -19,6 +20,13 @@ public class ClienteOso extends Thread{
     public ClienteOso(String host, int port) {
         this.host = host;
         this.port = port;
+        nClient = 0;
+    }
+    
+    public ClienteOso(String host, int port, int nClient) {
+        this.host = host;
+        this.port = port;
+        this.nClient = nClient;
     }
 
     @Override
@@ -28,11 +36,16 @@ public class ClienteOso extends Thread{
             jugador = new Jugador(socket);
             jugador.open();
             
-            Tablero tablero = jugador.leerTablero();
-            
             gui = new OsoGUI(jugador);
-            gui.setLocationRelativeTo(null);
             gui.setVisible(true);
+            if (nClient != 0){
+                gui.setTitle("Client " + nClient);
+                gui.setLocation( (nClient-1)*gui.getWidth() , 0);
+            }else{
+                gui.setLocationRelativeTo(null);
+            }
+            
+            Tablero tablero = jugador.leerTablero();
             gui.iniciarBotones(tablero.getxDim(), tablero.getyDim());
             gui.actualizar(tablero);
             gui.activar(false);

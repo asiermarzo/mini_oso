@@ -37,5 +37,11 @@ public class Jugada implements Serializable{
         this.letra = letra;
     }
     
+    public void fromString(String s){
+        String[] split = s.split(",");
+        x = Integer.parseInt(split[0]);
+        y = Integer.parseInt(split[1]);
+        letra = split[2].charAt(0);
+    }
     
 }

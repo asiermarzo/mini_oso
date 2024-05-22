@@ -112,6 +112,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         sRadio = new javax.swing.JRadioButton();
         panelJuego = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        nothingButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(288, 294));
@@ -143,10 +144,12 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         );
         panelJuegoLayout.setVerticalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGap(0, 184, Short.MAX_VALUE)
         );
 
         jLabel3.setText("Tu:");
+
+        nothingButton.setText("NOTHING");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,9 +163,10 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
                         .addComponent(oRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sRadio)
-                        .addGap(0, 188, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nothingButton))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,7 +190,8 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oRadio)
-                    .addComponent(sRadio))
+                    .addComponent(sRadio)
+                    .addComponent(nothingButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -201,6 +206,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel mainLabel;
+    private javax.swing.JButton nothingButton;
     private javax.swing.ButtonGroup oOrSGroup;
     private javax.swing.JRadioButton oRadio;
     private javax.swing.JTextField oppoOsosText;
