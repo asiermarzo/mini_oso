@@ -3,10 +3,10 @@ package oso.clients;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import oso.common.Tablero;
-import oso.server.Jugador;
-import oso.server.Puntos;
-import oso.server.TuTurno;
+import oso.game.Tablero;
+import oso.network.Jugador;
+import oso.network.Puntos;
+import oso.network.TuTurno;
 
 
 public class ClienteOso extends Thread{
@@ -47,20 +47,20 @@ public class ClienteOso extends Thread{
             
             Tablero tablero = jugador.leerTablero();
             gui.iniciarBotones(tablero.getxDim(), tablero.getyDim());
-            gui.actualizar(tablero);
-            gui.activar(false);
+            gui.actualizarCasillas(tablero);
+            gui.activarGUI(false);
             
             while(interrupted() == false){ //recepcion de mensajes
                 Object msg = jugador.leerObjeto();
                 if (msg instanceof TuTurno){
                     TuTurno turno = (TuTurno)msg;
-                    gui.activar( true );
+                    gui.activarGUI( true );
                 }else if (msg instanceof Puntos){
                     Puntos puntos = (Puntos)msg;
                     gui.actualizarPuntos(puntos.getTusPuntos(), puntos.getOtrosPuntos());
                 }else if (msg instanceof Tablero){
                     tablero = (Tablero)msg;
-                    gui.actualizar(tablero);
+                    gui.actualizarCasillas(tablero);
                 }else{
                     System.out.println("Mensaje no identificado " + msg.getClass().getName());
                 }

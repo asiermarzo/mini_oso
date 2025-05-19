@@ -1,10 +1,11 @@
 package oso.server;
 
+import oso.network.Jugador;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import oso.common.Jugada;
-import oso.common.Tablero;
+import oso.game.Jugada;
+import oso.game.Tablero;
 
 public class Partida extends Thread{
     Tablero tablero;

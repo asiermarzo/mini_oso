@@ -1,4 +1,4 @@
-package oso.common;
+package oso.game;
 
 import java.io.Serializable;
 
@@ -94,7 +94,7 @@ public class Tablero implements Serializable{
     }
 
     boolean comprobarYUsar2Casillas(int x1, int y1, char letra1, int x2, int y2, char letra2) {
-        if (estaDentroYEsLetra(x1, y1, letra1) && estaDentroYEsLetra(x2, y2, letra2)) {
+        if (estaDentroYEsEstaLetra(x1, y1, letra1) && estaDentroYEsEstaLetra(x2, y2, letra2)) {
             marcarUsada(x1, y1);
             marcarUsada(x2, y2);
             return true;
@@ -107,13 +107,13 @@ public class Tablero implements Serializable{
         casillas[x][y] = Character.toUpperCase(letra);
     }
 
-    boolean estaDentroYEsLetra(int x, int y, char letter) {
+    boolean estaDentroYEsEstaLetra(int x, int y, char letter) {
         return x >= 0 && x < xDim
                 && y >= 0 && y < yDim
                 && casillas[x][y] == letter;
     }
 
-    public void imprimir() {
+    public void imprimirConsola() {
         for (int x = 0; x < xDim; ++x) {
             String l = "";
             for (int y = 0; y < yDim; ++y) {

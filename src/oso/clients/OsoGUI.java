@@ -5,8 +5,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import oso.common.Tablero;
-import oso.server.Jugador;
+import oso.game.Tablero;
+import oso.network.Jugador;
 
 
 public class OsoGUI extends javax.swing.JFrame implements ActionListener{
@@ -53,7 +53,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         int y = Integer.parseInt( s[1] );
         
         jugador.mandarJugada(x,y,letra);
-        activar(false);
+        activarGUI(false);
     }
     
     void actualizarPuntos(int tuyos, int otro){
@@ -61,7 +61,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         oppoOsosText.setText( otro + "");
     }
     
-    void actualizar(Tablero tablero){
+    void actualizarCasillas(Tablero tablero){
         final int w = tablero.getxDim();
         final int h = tablero.getyDim();
         for (int x = 0; x < w; ++x) {
@@ -82,7 +82,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         }
     }
     
-    void activar(boolean b) {
+    void activarGUI(boolean b) {
         activado = b;
         oRadio.setEnabled( b );
         sRadio.setEnabled( b );
@@ -90,7 +90,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
     
     
     void terminar() {
-        activar(false);
+        activarGUI(false);
         mainLabel.setText("FIN");
         for (JButton[] bs : botones) {
             for (JButton b : bs) {
@@ -112,7 +112,6 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         sRadio = new javax.swing.JRadioButton();
         panelJuego = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        nothingButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(288, 294));
@@ -144,12 +143,10 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
         );
         panelJuegoLayout.setVerticalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 184, Short.MAX_VALUE)
+            .addGap(0, 192, Short.MAX_VALUE)
         );
 
         jLabel3.setText("Tu:");
-
-        nothingButton.setText("NOTHING");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,8 +160,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
                         .addComponent(oRadio)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(sRadio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(nothingButton))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(mainLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
@@ -190,8 +186,7 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(oRadio)
-                    .addComponent(sRadio)
-                    .addComponent(nothingButton))
+                    .addComponent(sRadio))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panelJuego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
@@ -206,7 +201,6 @@ public class OsoGUI extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel mainLabel;
-    private javax.swing.JButton nothingButton;
     private javax.swing.ButtonGroup oOrSGroup;
     private javax.swing.JRadioButton oRadio;
     private javax.swing.JTextField oppoOsosText;

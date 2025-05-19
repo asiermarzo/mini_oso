@@ -1,4 +1,4 @@
-package oso.server;
+package oso.network;
 
 import java.io.Serializable;
 

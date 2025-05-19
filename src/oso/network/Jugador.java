@@ -1,4 +1,4 @@
-package oso.server;
+package oso.network;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -6,12 +6,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import oso.common.Jugada;
-import oso.common.Tablero;
+import oso.game.Jugada;
+import oso.game.Tablero;
 
 
 public class Jugador {
-    int puntos;
+    public int puntos;
     
     Socket socket;
     ObjectInputStream objectInput;

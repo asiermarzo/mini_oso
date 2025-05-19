@@ -1,4 +1,4 @@
-package oso.common;
+package oso.game;
 
 import java.io.Serializable;
 
