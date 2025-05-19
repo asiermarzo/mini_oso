@@ -2,11 +2,11 @@ package oso.network;
 
 import java.io.Serializable;
 
-public class Puntos implements Serializable{
+public class PaquetePuntos implements Serializable{
     int tusPuntos;
     int otrosPuntos;
 
-    public Puntos(int tusPuntos, int otrosPuntos) {
+    public PaquetePuntos(int tusPuntos, int otrosPuntos) {
         this.tusPuntos = tusPuntos;
         this.otrosPuntos = otrosPuntos;
     }

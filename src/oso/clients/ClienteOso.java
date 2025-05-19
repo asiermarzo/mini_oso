@@ -4,9 +4,9 @@ import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import oso.game.Tablero;
-import oso.network.Jugador;
-import oso.network.Puntos;
-import oso.network.TuTurno;
+import oso.network.ConexionJugador;
+import oso.network.PaquetePuntos;
+import oso.network.PaqueteTuTurno;
 
 
 public class ClienteOso extends Thread{
@@ -14,7 +14,7 @@ public class ClienteOso extends Thread{
     private final String host;
     private final int port;
     
-    Jugador jugador;
+    ConexionJugador jugador;
     OsoGUI gui;
 
     public ClienteOso(String host, int port) {
@@ -33,7 +33,7 @@ public class ClienteOso extends Thread{
     public void run() {
         try {
             Socket socket = new Socket(host, port);
-            jugador = new Jugador(socket);
+            jugador = new ConexionJugador(socket);
             jugador.open();
             
             gui = new OsoGUI(jugador);
@@ -52,11 +52,11 @@ public class ClienteOso extends Thread{
             
             while(interrupted() == false){ //recepcion de mensajes
                 Object msg = jugador.leerObjeto();
-                if (msg instanceof TuTurno){
-                    TuTurno turno = (TuTurno)msg;
+                if (msg instanceof PaqueteTuTurno){
+                    PaqueteTuTurno turno = (PaqueteTuTurno)msg;
                     gui.activarGUI( true );
-                }else if (msg instanceof Puntos){
-                    Puntos puntos = (Puntos)msg;
+                }else if (msg instanceof PaquetePuntos){
+                    PaquetePuntos puntos = (PaquetePuntos)msg;
                     gui.actualizarPuntos(puntos.getTusPuntos(), puntos.getOtrosPuntos());
                 }else if (msg instanceof Tablero){
                     tablero = (Tablero)msg;

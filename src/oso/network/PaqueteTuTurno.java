@@ -3,6 +3,6 @@ package oso.network;
 import java.io.Serializable;
 
 
-public class TuTurno implements Serializable{
+public class PaqueteTuTurno implements Serializable{
    
 }

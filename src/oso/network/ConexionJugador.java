@@ -10,14 +10,14 @@ import oso.game.Jugada;
 import oso.game.Tablero;
 
 
-public class Jugador {
+public class ConexionJugador {
     public int puntos;
     
     Socket socket;
     ObjectInputStream objectInput;
     ObjectOutputStream objectOutput;
 
-    public Jugador(Socket socket) {
+    public ConexionJugador(Socket socket) {
         this.socket = socket;
     }
     
@@ -37,11 +37,11 @@ public class Jugador {
     }
 
     public void mandarTuTurno() throws IOException {
-        objectOutput.writeObject( new TuTurno() );
+        objectOutput.writeObject( new PaqueteTuTurno() );
     }
     
     public void mandarPuntos(int tusPuntos, int otrosPuntos) throws IOException {
-        objectOutput.writeObject( new Puntos(tusPuntos, otrosPuntos) );
+        objectOutput.writeObject( new PaquetePuntos(tusPuntos, otrosPuntos) );
     }
     
     public void mandarJugada(int x, int y, char letra) {
@@ -49,7 +49,7 @@ public class Jugador {
             Jugada jugada = new Jugada(x, y, letra);
             objectOutput.writeObject(jugada);
         } catch (IOException ex) {
-            Logger.getLogger(Jugador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionJugador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -71,7 +71,7 @@ public class Jugador {
         try {
             objectOutput.reset();
         } catch (IOException ex) {
-            Logger.getLogger(Jugador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ConexionJugador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

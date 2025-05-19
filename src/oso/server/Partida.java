@@ -1,6 +1,6 @@
 package oso.server;
 
-import oso.network.Jugador;
+import oso.network.ConexionJugador;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,13 +10,13 @@ import oso.game.Tablero;
 public class Partida extends Thread{
     Tablero tablero;
     boolean esTurnoA;
-    Jugador jugadorA;
-    Jugador jugadorB;
+    ConexionJugador jugadorA;
+    ConexionJugador jugadorB;
 
     Partida(int xDim, int yDim, Socket socketA, Socket socketB) {
         tablero = new Tablero(xDim, yDim);
-        jugadorA = new Jugador(socketA);
-        jugadorB = new Jugador(socketB);
+        jugadorA = new ConexionJugador(socketA);
+        jugadorB = new ConexionJugador(socketB);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class Partida extends Thread{
                 jugadorA.resetObjectOutput();
                 jugadorB.resetObjectOutput();
                 
-                Jugador jugador = esTurnoA ? jugadorA : jugadorB;
+                ConexionJugador jugador = esTurnoA ? jugadorA : jugadorB;
                 
                 jugador.mandarTuTurno();
                 Jugada jugada = jugador.leerJugada();

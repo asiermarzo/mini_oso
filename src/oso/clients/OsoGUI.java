@@ -6,15 +6,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import oso.game.Tablero;
-import oso.network.Jugador;
+import oso.network.ConexionJugador;
 
 
 public class OsoGUI extends javax.swing.JFrame implements ActionListener{
     private JButton[][] botones;
-    Jugador jugador;
+    ConexionJugador jugador;
     boolean activado = false;
     
-    public OsoGUI(Jugador jugador) {
+    public OsoGUI(ConexionJugador jugador) {
         this.jugador = jugador;
         initComponents();
         pack();
