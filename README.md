@@ -15,4 +15,6 @@ El PaquetePuntos se manda del servidor al cliente para indicar los puntos de cad
 
 oso.server.Partida es un hilo que gestiona la Partida entre 2 jugadores. 
 
-oso.ServidorOso es el hilo del servidor que acepta 2 clientes y crea una partida con ellos.
+oso.server.ServidorOso es el hilo del servidor que acepta 2 clientes y crea una partida con ellos.
+
+oso.ServerY2Clientes es para lanzar 1 servidor y 2 clientes de golpe y poder probar rápido las partidas multi-jugador. No es recomendable utilizalo para desarrollar/depurar ya que al cerrar cualquiera de los clientes o servidores, se cerrará todo.
